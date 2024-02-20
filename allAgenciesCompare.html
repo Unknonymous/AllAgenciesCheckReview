@@ -3,13 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Selection</title>
+    <title>Agencies Audit Compare</title>
+
+    <style>
+        body{
+            background-color: rgb(13, 0, 0);
+            color: white;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        th:hover {
+            background-color: #0a0942;
+        }
+
+        /* Style for bold and red cells */
+        td.alert-true {
+            font-weight: bold;
+            color: red;
+            border-color: red;
+        }
+    </style>
+
 </head>
 <body>
-    
 
     <button id="audit1Button">Select Audit1 File (earlier)</button>
     <button id="audit2Button">Select Audit2 File (later)</button>
+    <button id="analyzeButton" disabled>Analyze Reports</button>
+    <button id="exportButton" disabled>Export Report</button>
+
+    <div id="loadedFiles"></div>
+    <table id="resultsTable"></table>
 
     <script src="./allAgenciesCompare.js"></script>
 
