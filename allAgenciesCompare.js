@@ -256,3 +256,51 @@ function generateCSVContent(data) {
 
   return `${header}\n${rows}`;
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Enable the PHP file import button on page load
+    document.getElementById('phpFileImport').disabled = false;
+
+    // Handle PHP file import
+    document.getElementById('phpFileImport').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const content = e.target.result;
+            // Populate the 'controller' variable and display the file content
+            window.controller = content;
+            document.getElementById('phpFileDisplay').textContent = content;
+            // Enable the method name input
+            document.getElementById('methodName').disabled = false;
+        };
+        reader.readAsText(file);
+    });
+
+    // Enable the "Extract Request Object" button when method name is provided
+    document.getElementById('methodName').addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            document.getElementById('extractRequestObject').disabled = false;
+        } else {
+            document.getElementById('extractRequestObject').disabled = true;
+        }
+    });
+
+    // Extract and display the request object
+    document.getElementById('extractRequestObject').addEventListener('click', function() {
+        // Implement the logic to search for the method in 'controller' and reconstruct the $request object
+        // For demonstration, we will simulate the extraction process
+        const methodName = document.getElementById('methodName').value.trim();
+        // Simulate the extraction process (to be replaced with actual logic)
+        const requestObject = { exampleKey: "exampleValue" }; // Placeholder for extracted object
+        document.getElementById('requestObjectContent').textContent = JSON.stringify(requestObject, null, 2);
+        // Show the modal
+        document.getElementById('requestObjectModal').style.display = 'block';
+    });
+
+    // Close the modal
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('requestObjectModal').style.display = 'none';
+    });
+
+    // Copy to clipboard
+    // Implement the Copy button functionality (to be added)
+});
